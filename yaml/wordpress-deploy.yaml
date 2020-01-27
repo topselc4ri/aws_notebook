@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+        - image: wordpress:4.8-apache
+          name: wordpress
+          volumeMounts:
+            - name: efs-pvc
+              mountPath: "/var/www/html/wp-content/uploads"
+          env:
+          - name: WORDPRESS_DB_HOST
+            value: rds-topse.ciph33ijhh38.us-west-2.rds.amazonaws.com:3306
+          - name: WORDPRESS_DB_PASSWORD
+            value: password
+
+          ports:
+            - containerPort: 80
+              name: wordpress
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "chown -R www-data:www-data /var/www/html/wp-content/uploads"]
+      volumes:
+        - name: efs-pvc
+          persistentVolumeClaim:
+            claimName: efs
