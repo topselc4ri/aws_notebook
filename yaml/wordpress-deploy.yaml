@@ -23,7 +23,7 @@ spec:
               mountPath: "/var/www/html/wp-content/uploads"
           env:
           - name: WORDPRESS_DB_HOST
-            value: rds-topse.ciph33ijhh38.us-west-2.rds.amazonaws.com:3306
+            value: rds-topse.ciph33ijhh38.us-west-2.rds.amazonaws.com
           - name: WORDPRESS_DB_PASSWORD
             value: password
 
