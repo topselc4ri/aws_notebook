@@ -3,6 +3,7 @@ temp/
 .lc_wrapper_regex.txt
 .log/
 raw.githubusercontent.com/
+res_info.json
 
 # ignore list for jupyter https://github.com/jupyter/notebook/blob/master/.gitignore
 MANIFEST

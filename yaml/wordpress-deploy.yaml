@@ -37,4 +37,4 @@ spec:
       volumes:
         - name: efs-pvc
           persistentVolumeClaim:
-            claimName: efs
+            claimName: fileserver-claim
